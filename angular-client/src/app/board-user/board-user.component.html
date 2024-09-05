@@ -1,0 +1,41 @@
+<div class="container">
+  <header class="jumbotron">
+    <p>{{ content }}</p>
+  </header>
+  <div class="table-responsive">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Date Created</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td class="user-info">
+            <img [src]="user.photo" alt="{{ user.name }}" class="user-photo">
+            {{ user.name }}
+          </td>
+          <td>{{ user.dateCreated }}</td>
+          <td>{{ user.role }}</td>
+          <td>
+            <span [ngClass]="{
+                'status-active': user.status === 'Active',
+                'status-suspended': user.status === 'Suspended',
+                'status-inactive': user.status === 'Inactive'
+              }">{{ user.status }}</span>
+          </td>
+          <td>
+            <button class="action-btn edit">⚙️</button> 
+            <button class="action-btn delete">❌</button>
+          </td>          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
